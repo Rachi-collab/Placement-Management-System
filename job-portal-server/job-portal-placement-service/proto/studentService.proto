@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package com.jobportal.studentserviceproto;
+
+service StudentService {
+  rpc getStudentById(GetStudentByIdRequest) returns (GetStudentByIdResponse) {}
+}
+
+message File {
+  string fileName = 1;
+  string fileType = 2;
+  string fileSize = 3;
+  bytes file = 4;
+}
+
+message PersonalDetails {
+  File profilePicture = 1;
+  string firstName = 2;
+  string middleName = 3;
+  string lastName = 4;
+  string fatherName = 5;
+  string gender = 6;
+  string currentAddressLine1 = 7;
+  string currentAddressLine2 = 8;
+  string permanentAddressLine1 = 9;
+  string permanentAddressLine2 = 10;
+  string city = 11;
+  string state = 12;
+  string country = 13;
+  string dob = 14;
+  string nationality = 15;
+  repeated string articles = 16;
+}
+
+message EducationDetails {
+  map<string, string> SSCDetails = 1;
+  map<string, string> HSCDetails = 2;
+  map<string, string> DiplomaDetails = 3;
+  map<string, string> UGDetails = 4;
+  map<string, string> PGDetails = 5;
+}
+
+message ContactDetails {
+  string primaryEmailId = 1;
+  string secondaryEmailId = 2;
+  string phoneNumber = 3;
+  string altPhoneNumber = 4;
+  string altPhoneNumberBelongsTo = 5;
+  string linkedInId = 6;
+  string skypeId = 7;
+}
+
+message JobDetails {
+  repeated string skills = 1;
+  string experienceType = 2;
+  int32 experiencePeriodInYears = 3;
+  int32 experiencePeriodInMonths = 4;
+}
+
+message Student {
+  string id = 1;
+  PersonalDetails personalDetails = 2;
+  EducationDetails educationDetails = 3;
+  ContactDetails contactDetails = 4;
+  JobDetails jobDetails = 5;
+  string date = 6;
+}
+
+
+
+message GetStudentByIdRequest {
+  string studentId = 1;
+}
+
+message GetStudentByIdResponse {
+  Student student = 1;
+}
+
